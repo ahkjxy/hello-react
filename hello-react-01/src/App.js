@@ -6,6 +6,11 @@ import Home from './components/Home';
 
 class App extends Component {
   render() {
+    const user = {
+      name: 'Jesn jhon',
+      age: 12,
+      hobbies: ['Sports', 'Readings']
+    }
     return (
       <div className="container">
         <div className="row">
@@ -13,7 +18,7 @@ class App extends Component {
             <h1>Hello world!</h1>
           </div>
           <Header />
-          <Home />
+          <Home name={user.name} age={user.age} user={user} />
         </div>
       </div>
     );
