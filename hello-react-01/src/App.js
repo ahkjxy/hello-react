@@ -18,7 +18,9 @@ class App extends Component {
             <h1>Hello world!</h1>
           </div>
           <Header />
-          <Home name={user.name} age={user.age} user={user} />
+          <Home name={user.name} age={user.age} user={user}>
+            <p>I'm Header childen</p>
+          </Home>
         </div>
       </div>
     );
