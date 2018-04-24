@@ -22,5 +22,5 @@ export default class Home extends Component {
 Home.propTypes = {
   name: PropTypes.string,
   age: PropTypes.number,
-  name: PropTypes.object,
+  user: PropTypes.object,
 }
