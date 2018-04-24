@@ -24,4 +24,5 @@ Home.propTypes = {
   name: PropTypes.string,
   age: PropTypes.number,
   user: PropTypes.object,
+  children: PropTypes.element.isRequired
 }
