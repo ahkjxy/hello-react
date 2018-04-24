@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class App extends Component {
+export default class Home extends Component {
   render() {
     console.log(this.props);
     return (
@@ -18,3 +19,8 @@ export default class App extends Component {
   }
 }
 
+Home.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+  name: PropTypes.object,
+}
