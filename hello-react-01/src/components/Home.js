@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default class Home extends Component {
   render() {
     console.log(this.props);
+    let children = this.props.children;
     return (
       <div className="col-xl-1 col-xl-offset-11">
         <h1>Home</h1>
@@ -14,7 +15,7 @@ export default class Home extends Component {
             {this.props.user.hobbies.map((item, idx) => <li key={idx}>{item}</li>)}
           </ul>
         </div>
-        {this.props.children}
+        {children}
       </div>
     );
   }
