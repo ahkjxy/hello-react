@@ -5,14 +5,13 @@ export default class Home extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      age: props.age
+      age: this.props.age
     }
   }
   myAgeAdd () {
     this.setState({
       age: this.state.age + 3
     })
-    console.log(`this state age is: ${this.state.age + 3}`, `this props age is: ${this.props.age }`)
   }
   render() {
     let children = this.props.children;
@@ -24,6 +23,10 @@ export default class Home extends Component {
           <div className="col-md-12">
             <button className="btn btn-primary" onClick={() => {this.myAgeAdd()}}>My Age add 3</button>
           </div>
+          <br />
+          <p className="text-muted">
+            <b>this state age is: {this.state.age}, this props age is: {this.props.age}</b>
+          </p>
           <br />
           <h5>My hobbies list:</h5>
           <ul>
