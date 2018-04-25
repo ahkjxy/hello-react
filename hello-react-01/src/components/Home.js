@@ -34,11 +34,12 @@ export default class Home extends Component {
           <p className="text-muted">
             <b>this state age is: {this.state.age}, this props age is: {this.props.age}</b>
           </p>
-          <br />
+          <div className="line"></div>
           <h5>My hobbies list:</h5>
           <ul>
             {this.props.user.hobbies.map((item, idx) => <li key={idx}>{item}</li>)}
           </ul>
+          <div className="line"></div>
           <div className="dropdown">
             <button className="btn btn-secondary dropdown-toggle" type="button" onClick={()=>{this.setOpen()}}>
               Dropdown button

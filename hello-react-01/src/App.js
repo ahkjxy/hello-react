@@ -17,7 +17,9 @@ class App extends Component {
           <div className="col-xl-1 col-xl-offset-11">
             <h1>Hello world!</h1>
           </div>
+          <div className="line"></div>
           <Header />
+          <div className="line"></div>
           <Home name={user.name} age={user.age} user={user}>
             <p>I'm Header childen</p>
           </Home>
