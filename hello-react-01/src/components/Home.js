@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 export default class Home extends Component {
   constructor (props) {
     super(props)
-    this.age = this.props.age
+    this.state = {
+      age: props.age
+    }
   }
   myAgeAdd () {
-    this.age += 3
-    console.log(this)
+    this.setState({
+      age: this.state.age + 3
+    })
+    console.log(`this state age is: ${this.state.age + 3}`, `this props age is: ${this.props.age }`)
   }
   render() {
     let children = this.props.children;
@@ -16,7 +20,7 @@ export default class Home extends Component {
       <div className="col-xl-1 col-xl-offset-11">
         <h1>Home</h1>
         <div>
-          <h4>My Name is: <b>{this.props.name}</b> and my age is: <b>{this.props.age}</b></h4>
+          <h4>My Name is: <b>{this.props.name}</b> and my age is: <b>{this.state.age}</b></h4>
           <div className="col-md-12">
             <button className="btn btn-primary" onClick={() => {this.myAgeAdd()}}>My Age add 3</button>
           </div>
