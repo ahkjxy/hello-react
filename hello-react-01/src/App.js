@@ -20,6 +20,9 @@ class App extends Component {
           <div className="line"></div>
           <Header />
           <div className="line"></div>
+          <button className="btn btn-primary" onClick={this.resetAge}>Reset Age</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button className="btn btn-primary" onClick={this.alertAge}>Alert Age</button>
           <Home name={user.name} age={user.age} user={user}>
             <p>I'm Header childen</p>
           </Home>

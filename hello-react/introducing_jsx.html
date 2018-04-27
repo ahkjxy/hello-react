@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app"></div>
+
+  <script src="https://cdn.bootcss.com/react/16.4.0-alpha.0911da3/umd/react.development.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.7926752/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.js"></script>
+
+  <script type="text/babel">
+    const user = {
+      firstName: 'Json',
+      lastName: 'Pipe',
+      avator: 'https://www.baidu.com/img/bd_logo1.png'
+    }
+    
+    const formatUser = () => {
+      return `${user.firstName} ${user.lastName}`
+    }
+
+    const GreetingMyName = () => alert(`My name is: ${user.firstName} ${user.lastName}`)
+    
+    const element = (
+      <div>
+        <h1>Embedding Expressions in JSX:</h1>
+        <h4>My name is: {formatUser()}</h4>
+        <h1>JSX is an Expression Too:</h1>
+        <button onClick={GreetingMyName}>Greeting My Name</button>
+        <h1>Specifying Attributes/Children with JSX:</h1>
+        <img src={user.avator} width="200" />
+        <h1>JSX Represents Objects:</h1>
+        <p>JSX -> React.createElement(elementTag, elementProps, elementChildrens)</p>
+      </div>
+    )
+
+    ReactDOM.render(
+      element,
+      document.getElementById('app')
+    )
+	</script>
+</body>
+
+</html>
