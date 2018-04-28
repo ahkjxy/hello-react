@@ -25,6 +25,7 @@
     class ToggleContent extends React.Component {
       constructor(props) {
         super(props)
+        this.ToggleTxtState = this.ToggleTxtState.bind(this) // avoid this sort of performance problem: onClick={()=>{this.ToggleTxtState()}}
         this.state = {
           isOpen: false,
           count: 0
@@ -42,7 +43,7 @@
         return (
           <div>
             <h1>{this.props.text}</h1>
-            <button className="btn btn-primary" onClick={()=> {this.ToggleTxtState()}}>
+            <button className="btn btn-primary" onClick={this.ToggleTxtState}>
               Click this to {this.state.isOpen ? 'close' : 'open'} content
             </button>
             <p>Now count is: {this.state.count}</p>
