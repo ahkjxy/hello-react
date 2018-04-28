@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Encapsulating how the clock looks:</h1>
+    <div id="clock"></div>
+    <h1>Converting a Function to a Class:</h1>
+    <div id="clockClass"></div>
+    
+  </div>
+  <script src="https://cdn.bootcss.com/react/16.4.0-alpha.0911da3/umd/react.development.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.7926752/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.js"></script>
+
+  <script type="text/babel">
+    // Encapsulating how the clock looks
+    const Clock = (props) => {
+      return (
+        <div className="ClockContent">Now Time is: {props.date}</div>
+      )
+    }
+    
+   const Tick = () => {
+     ReactDOM.render(
+       <Clock date={new Date().toLocaleTimeString()} />,
+       document.getElementById('clock')
+     )
+   }
+
+   setInterval(Tick, 1000)
+
+   // Converting a Function to a Class with state
+   class ClockClass extends React.Component {
+     constructor(props) {
+       super(props)
+       this.state = {
+         date: new Date()
+       }
+     }
+     setClockTime () {
+       this.setState({
+         date: new Date()
+       })
+     }
+     componentDidMount () {
+       this._TimerId = setInterval(() => {
+         this.setClockTime()
+       }, 1000)
+     }
+     componentWillUnmount() {
+       clearInterval(this._TimerId);
+     }
+     render () {
+       return (
+         <div className="ClockClassContent">Now Time is: {this.state.date.toLocaleTimeString()}</div>
+       )
+     }
+   }
+   ReactDOM.render(
+      <ClockClass />,
+      document.getElementById('clockClass')
+   ) 
+
+  </script>
+</body>
+
+</html>
