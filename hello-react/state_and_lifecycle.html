@@ -12,7 +12,26 @@
     <div id="clock"></div>
     <h1>Converting a Function to a Class:</h1>
     <div id="clockClass"></div>
-    
+    <h1>Do Not Modify State Directly: </h1>
+    <p>// Wrong: this.state.comment = 'Hello';</p>
+    <p>// Correct: this.setState({comment: 'Hello'});</p>
+    <h1>State Updates May Be Asynchronous:</h1>
+     // this.setState((prevState, props) => { return { count: prevState.counter + props.increment } })
+    <h1>State Updates are Merged:</h1>
+    <p>
+       constructor(props) { super(props); this.state = { posts: [], comments: [] }; }
+    </p>
+    <p>
+       componentDidMount() { fetchPosts().then(response => { this.setState({ posts: response.posts }); }); fetchComments().then(response
+      => { this.setState({ comments: response.comments }); }); }
+    </p>
+    <h1>The Data Flows Down:</h1>
+    <p>This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component,
+    and any data or UI derived from that state can only affect components “below” them in the tree. If you imagine a component
+    tree as a waterfall of props, each component’s state is like an additional water source that joins it at an arbitrary point
+    but also flows down. To show that all components are truly isolated, we can create an App component that renders three
+    <clock />s:</p>
+    <div id="ThreeClock"></div>
   </div>
   <script src="https://cdn.bootcss.com/react/16.4.0-alpha.0911da3/umd/react.development.js"></script>
   <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.7926752/umd/react-dom.development.js"></script>
@@ -65,8 +84,24 @@
    ReactDOM.render(
       <ClockClass />,
       document.getElementById('clockClass')
-   ) 
+   )
 
+   // Three isolated ClockClass
+   const ThreeClock = () => {
+     return (
+       <div>
+          <h3>Three isolated ClockClass:</h3>
+          <ClockClass />
+          <ClockClass />
+          <ClockClass />
+       </div>
+     )
+   }
+
+   ReactDOM.render(
+     <ThreeClock />,
+      document.getElementById('ThreeClock')
+   )
   </script>
 </body>
 
