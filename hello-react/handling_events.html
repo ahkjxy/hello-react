@@ -26,13 +26,15 @@
       constructor(props) {
         super(props)
         this.state = {
-          isOpen: false
+          isOpen: false,
+          count: 0
         }
       }
       ToggleTxtState() {
         this.setState((prevState, props) => {
           return {
-            isOpen: !prevState.isOpen
+            isOpen: !prevState.isOpen,
+            count: prevState.count +=1
           }
         })
       }
@@ -43,6 +45,7 @@
             <button className="btn btn-primary" onClick={()=> {this.ToggleTxtState()}}>
               Click this to {this.state.isOpen ? 'close' : 'open'} content
             </button>
+            <p>Now count is: {this.state.count}</p>
             <div className={this.state.isOpen ? 'content' : 'content hide'}>
               This is some string.
             </div>
