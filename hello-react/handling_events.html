@@ -39,6 +39,9 @@
           }
         })
       }
+      Logging = (e) => {
+        console.log(e, this)
+      }
       render () {
         return (
           <div>
@@ -50,6 +53,8 @@
             <div className={this.state.isOpen ? 'content' : 'content hide'}>
               This is some string.
             </div>
+            <h1>Logging Button:</h1>
+            <button className="btn" onClick={this.Logging}>Logging Button</button>
           </div>
         )
       }
