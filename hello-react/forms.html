@@ -8,14 +8,90 @@
 
 <body>
   <div id="root">
-    <h1>Controlled Components:</h1>
-    
+    <div id="app01"></div>
+    <div id="app02"></div>
+    <div id="app03"></div>
   </div>
   <script src="https://cdn.bootcss.com/react/16.4.0-alpha.0911da3/umd/react.development.js"></script>
   <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.7926752/umd/react-dom.development.js"></script>
   <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.js"></script>
   <script type="text/babel">
-    
+    // Controlled Components
+    class NameForm extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          value: '',
+          placeholder: 'Please enter...'
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+      }
+      handleChange (e) {
+        this.setState({value: e.target.value})
+      }
+      handleSubmit (e) {
+        e.preventDefault()
+        alert(this.state.value)
+      }
+      render () {
+        return (
+          <form onSubmit={this.handleSubmit}>
+            <h1>Controlled Components: text input</h1>
+            <label>
+              <input type="text" value={this.state.value} placeholder={this.state.placeholder} onChange={this.handleChange} />
+            </label>
+            &nbsp;&nbsp;
+            <button type="submit">Submit</button>
+            &nbsp;&nbsp;
+            <span>Your text input value is: <b>{this.state.value}</b></span>
+          </form>
+        )
+      }
+    }
+    ReactDOM.render(
+      <NameForm />,
+      document.getElementById('app01')
+    )
+
+    // EssayForm
+    class EssayForm extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          value: '',
+          placeholder: 'Please enter your essay content...'
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+      }
+      handleChange (e) {
+        this.setState({value: e.target.value.toUpperCase()})
+      }
+      handleSubmit (e) {
+        e.preventDefault()
+        alert(this.state.value)
+      }
+      render () {
+        return (
+          <form onSubmit={this.handleSubmit}>
+            <h1>Controlled Components: textarea</h1>
+            <label>
+              Essay:<br />
+              <textarea value={this.state.value} placeholder={this.state.placeholder} onChange={this.handleChange} />
+            </label>
+            <br />
+            <input type="submit" value="Submit" />
+            <p>Your text eassy content is: <b>{this.state.value}</b></p>
+            <p>Overall, this makes it so that <b>input type="text"</b>, <b>textarea</b>, and <b>select</b> all work very similarly - they all accept a value attribute that you can use to implement a controlled component.</p>
+          </form>
+        )
+      }
+    }
+    ReactDOM.render(
+      <EssayForm />,
+      document.getElementById('app02')
+    )
   </script>
 </body>
 
