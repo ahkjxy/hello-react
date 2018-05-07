@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <h1>Basic List Component:</h1>
+    <div id="app01"></div>
+    <h1>Keys Must Only Be Unique Among Siblings:</h1>
+    <div id="app02"></div>
+  </div>
+  <script src="https://cdn.bootcss.com/react/16.4.0-alpha.0911da3/umd/react.development.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.7926752/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.js"></script>
+  <script type="text/babel">
+    // Basic List Component
+    function Numbers (props) {
+      const numbers = props.numbers
+      const listNumbers = numbers.map((number, index) => 
+        <li key={index} data-index={index}>{number * 2}</li>
+        // <li key={number.toString()}>{number * 2}</li>
+      )
+      return (
+        <ul>{listNumbers}</ul>
+      )
+    }
+    const numbers = [1, 2, 3, 4, 5, 6]
+    ReactDOM.render(
+      <Numbers numbers={numbers} />,
+      document.getElementById('app01')
+    )
+    
+    // Keys Must Only Be Unique Among Siblings
+    function Blogs (props) {
+      const siderbar = (
+        <ul>
+            {props.posts.map((post, index) => 
+              <li key={post.id}>
+                {post.title}
+              </li>
+            )}
+        </ul>
+      )
+      const content = (
+        props.posts.map((post, index) => 
+          <div key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+          </div>
+        )
+      )
+      return (
+        <div>
+          {siderbar}
+          <hr />
+          {content}
+        </div>
+      )
+    }
+    const posts = [
+      {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+      {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+    ]
+    ReactDOM.render(
+      <Blogs posts={posts} />,
+      document.getElementById('app02')
+    )
+  </script>
+</body>
+
+</html>
