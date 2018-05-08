@@ -28,25 +28,25 @@
     class Calculator extends React.Component {
       constructor(props) {
         super(props)
-        this.state = { temporture: ''}
+        this.state = { temperature: ''}
         this.handerTemChange = this.handerTemChange.bind(this)
       }
       handerTemChange (e) {
-        const temporture = e.target.value
+        const temperature = e.target.value
         this.setState((state, props) => { return { 
-          temporture: temporture
+          temperature: temperature
         }})
       }
       render () {
-        const temporture = this.state.temporture
+        const temperature = this.state.temperature
         return (
-          <div className="temportureBox">
-            <div className="temportureItem">
-              <p>Please enter below about current temporture:</p>
-              <label><input type="text" value={temporture} onChange={this.handerTemChange} /></label>
+          <div className="temperatureBox">
+            <div className="temperatureItem">
+              <p>Please enter below about current temperature:</p>
+              <label><input type="text" value={temperature} onChange={this.handerTemChange} /></label>
             </div>
-            <div className="temportureItem">
-              <CalculatorStatus nowTemp={temporture} />
+            <div className="temperatureItem">
+              <CalculatorStatus nowTemp={temperature} />
             </div>
             <hr />
           </div>
