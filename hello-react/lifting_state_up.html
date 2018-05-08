@@ -17,7 +17,46 @@
   <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.js"></script>
   <script type="text/babel">
     // Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let’s see how this works in action.
-    
+    const CalculatorStatus = (props) => {
+      const nowTemp = props.nowTemp
+      return (
+        nowTemp >= 100 
+          ? (<p>Now value is: {nowTemp}, and the water would boil</p>)
+          : (<p>Now value is: {nowTemp}, and the water would not boil</p>)
+      )
+    }
+    class Calculator extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = { temporture: ''}
+        this.handerTemChange = this.handerTemChange.bind(this)
+      }
+      handerTemChange (e) {
+        const temporture = e.target.value
+        this.setState((state, props) => { return { 
+          temporture: temporture
+        }})
+      }
+      render () {
+        const temporture = this.state.temporture
+        return (
+          <div className="temportureBox">
+            <div className="temportureItem">
+              <p>Please enter below about current temporture:</p>
+              <label><input type="text" value={temporture} onChange={this.handerTemChange} /></label>
+            </div>
+            <div className="temportureItem">
+              <CalculatorStatus nowTemp={temporture} />
+            </div>
+            <hr />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+      <Calculator />,
+      document.getElementById('app01')
+    )
   </script>
 </body>
 
