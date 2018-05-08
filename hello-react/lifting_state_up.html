@@ -57,6 +57,59 @@
       <Calculator />,
       document.getElementById('app01')
     )
+
+    // Our new requirement is that, in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
+    const scaleNames = {
+      c: 'Celsius',
+      f: 'Fahrenheit'
+    }
+    class CalculatorInput extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          temperature: ''
+        }
+        this.handerTemChange = this.handerTemChange.bind(this)
+      }
+      handerTemChange (e) {
+        this.setState({
+          temperature: e.target.value
+        })
+      }
+      render () {
+        const temperature = this.state.temperature
+        const scale = this.props.scale
+        const style = {
+          float: 'left',
+          marginRight: '20px',
+          padding: '10px',
+          border: '1px solid #dbdbdb'
+        }
+        return (
+          <div className="temperatureBox" style={style}>
+            <div className="temperatureItem">
+              <p>Enter temperature in {scaleNames[scale]}:</p>
+              <label><input type="text" value={temperature} onChange={this.handerTemChange} /></label>
+            </div>
+          </div>
+        )
+      }
+    }
+    class CalculatorTrans extends React.Component {
+      render() {
+        return (
+          <div>
+            <h1>{this.props.text}</h1>
+            <CalculatorInput scale="c" />
+            <CalculatorInput scale="f" />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+      <CalculatorTrans text=":::Temperature Transform Calculator:::"/>,
+      document.getElementById('app02')
+    )
   </script>
 </body>
 
