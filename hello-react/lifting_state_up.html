@@ -129,6 +129,7 @@
         const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
         return (
           <div>
+            <h1>Celsius and Fahrenheit input keeping in sync:</h1>  
             <CalculatorInput
               scale="c"
               temperature={celsius}
