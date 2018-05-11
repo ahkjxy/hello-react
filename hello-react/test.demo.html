@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+  </div>
+  <script src="https://cdn.bootcss.com/react/16.4.0-alpha.0911da3/umd/react.development.js"></script>
+  <script src="https://cdn.bootcss.com/react-dom/16.4.0-alpha.7926752/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.js"></script>
+  <script type="text/babel">
+    class ChildrenItem extends React.Component {
+      constructor(props) {
+        super(props);
+        this.handlerItemChange = this.handlerItemChange.bind(this)
+      }
+      handlerItemChange (e) {
+        this.props.onHandlerItemChange(e.target.value)
+      }
+      render () {
+        const value = this.props.value
+        const type = this.props.type
+        return (
+          <div className="children_input__item">
+            <input type="text" placeholder={"please enter value of " + type} value={value} onChange={this.handlerItemChange} />
+          </div>
+        )
+      }
+    }
+    class Caculator extends React.Component {
+      constructor(props) {
+        super(props);
+        this.onHandlerItemChangeC = this.onHandlerItemChangeC.bind(this)
+        this.onHandlerItemChangeF = this.onHandlerItemChangeF.bind(this)
+        this.state = {
+          type: 'c',
+          value: ''
+        }
+      }
+      onHandlerItemChangeC (value) {
+        this.setState({
+          type: 'c',
+          value
+        })
+      }
+      onHandlerItemChangeF (value) {
+        this.setState({
+          type: 'f',
+          value
+        })
+      }
+      render () {
+        const type = this.state.type
+        const value = this.state.value
+        const cValue = type === 'c' ? 2*value/3 : value
+        const fValue = type === 'f' ? 4*value/5 : value
+        return (
+          <div className="children_box">
+            <ChildrenItem type="c" value={cValue} onHandlerItemChange={this.onHandlerItemChangeC} />
+            <ChildrenItem type="f" value={fValue} onHandlerItemChange={this.onHandlerItemChangeF} />
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <Caculator />,
+      document.getElementById('root')
+    )
+  </script>
+</body>
+
+</html>
